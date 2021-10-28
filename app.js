@@ -1,11 +1,23 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const db = require('./config/db/db');
+const appService=require('./service/appService')
 
-var rootRouter = require('./routes/index');
+let getUser=(req,res,next)=>{
+    appService.getUser(req.body.username).then(user=>{
+        req.user=user;
+        next();
+    }).catch(err=>{
+        res.status(401).json({message:err})
+    })
+}
+const rootRouter = require('./route');
+const authRouter =require('./routes/auth');
+const authService=require('./service/authService');
 
-var app = express();
+const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -13,6 +25,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', rootRouter);
+db.connect((err) => {
+    if (err) console.log("DataBase Connection Error " + err)
+    else {
+        console.log("DataBase Connected")
+        require('./config/db/dbAutoConf').init()
+    }
+})
+
+app.use('/auth',getUser,authRouter);
+app.use('/',getUser,authService.verifyToken, rootRouter);
+
 
 module.exports = app;

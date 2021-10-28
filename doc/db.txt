@@ -1,0 +1,60 @@
+roles collection
+
+{
+    "_id":{
+        "$oid":"61746b150d7a8eb1c4d7e808"
+    },
+    "id":1,
+    "type":"admin"
+}
+
+users collection
+
+{
+    "_id": {
+        "$oid": "61746cef0d7a8eb1c4d7e812"
+    },
+    "id": id,
+    "name": "name",
+    "username": "username",
+    "password": "bcrypted pass (10)",
+    "role_id": role id,
+    "accessScecretToken": "64bit key",
+    "refreshScecretToken": "64bit key"
+}
+    ScecretToken Generation
+    require('crypto').randomBytes(64).toString('hex');
+
+
+refresh_tokens collection
+
+{
+    "_id": {
+        "$oid": "61747c130d7a8eb1c4d7e819"
+    },
+  "id":1,
+  "refreshToken":"refresh token",
+  "user_id":user id,  
+  "tokenStatus" :true/false
+}
+
+login_log collection
+
+{
+    "_id": {
+        "$oid": "61747e9f0d7a8eb1c4d7e81c"
+    },
+    "id": id,
+    "user_id": user id,
+    "accessToken": "",
+    "time": ""
+}
+
+id_handler collection 
+
+collection for handle all collections id
+
+{
+    "collection_name" :"collection_name",
+    "latest_id":latest_id
+}

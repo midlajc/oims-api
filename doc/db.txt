@@ -18,12 +18,29 @@ users collection
     "name": "name",
     "username": "username",
     "password": "bcrypted pass (10)",
+    //require('bcryptjs').hash("password",10,(err,done)=>{console.log(done)})
     "role_id": role id,
     "accessScecretToken": "64bit key",
     "refreshScecretToken": "64bit key"
+    //ScecretToken Generation
+    //require('crypto').randomBytes(64).toString('hex');
 }
-    ScecretToken Generation
-    require('crypto').randomBytes(64).toString('hex');
+
+//eg
+
+{
+    "_id": {
+        "$oid": "61746cef0d7a8eb1c4d7e812"
+    },
+    "id": 1,
+    "name": "MIDLAJ C",
+    "username": "midlajc",
+    "password": "$2a$10$gzMNtEQv5Ym1vOIagGk2OuQ8p1lealXN4PjfEAa8BbRyIncDdTS.2",
+    "role_id": 1,
+    "accessScecretToken": "54b0617e01adc62198ce8b0c708c03445ace00f68c5d7a21cbae23e79e3126ec18b86a19a81613d667b083ad74f40e5fa4db7bc57eeac8bff52637a96538dc72",
+    "refreshScecretToken": "ad48b42cc8ea078bad2deb056a2ff41f38372d19bb89a4b137bab7c25dd135223642d55ee37fcc3f855d075f42ab8844f01e3fe8592b032175a49146a6424e6c"
+}
+
 
 
 refresh_tokens collection

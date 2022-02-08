@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+require('dotenv').config()
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const db = require('./config/db/db');
@@ -13,6 +14,15 @@ let getUser=(req,res,next)=>{
         res.status(401).json({message:err})
     })
 }
+
+db.connect((err) => {
+    if (err) console.log("DataBase Connection Error " + err)
+    else {
+        console.log("DataBase Connected")
+        require('./config/db/dbAutoConf').init()
+    }
+})
+
 const rootRouter = require('./route');
 const authRouter =require('./routes/auth');
 const authService=require('./service/authService');
@@ -25,13 +35,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-db.connect((err) => {
-    if (err) console.log("DataBase Connection Error " + err)
-    else {
-        console.log("DataBase Connected")
-        require('./config/db/dbAutoConf').init()
-    }
-})
 
 app.use('/auth',getUser,authRouter);
 app.use('/',getUser,authService.verifyToken, rootRouter);

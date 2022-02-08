@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const authModel = require('../model/authModel');
 
 
-const generateAccessTocken = (user) => { return jwt.sign(user, user.accessScecretToken, { expiresIn: "1800s" }); }
+const generateAccessTocken = (user) => { return jwt.sign(user, user.accessScecretToken, { expiresIn: "86400s" }); }
 
 module.exports = {
     //Geneteating New Access Token

@@ -12,11 +12,12 @@ const app = express();
 app.use(cors())
 
 let getUser = (req, res, next) => {
-    appService.getUser(req.body.username).then(user => {
+    // console.log(req.body);
+    appService.getUser(req.headers['username']).then(user => {
         req.user = user;
         next();
     }).catch(err => {
-        res.status(401).json({ message: err })
+        res.status(401).json(err)
     })
 }
 

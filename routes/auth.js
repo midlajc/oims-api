@@ -2,11 +2,15 @@ var express = require('express');
 var router = express.Router();
 const authService = require('../service/authService');
 
-/* GET home page. */
+/* auth service. */
 router.post('/login', authService.verifyUser, async (req, res, next) => {
-    let accessToken = await authService.generateAccessTocken(req.user);
+    let accessToken = await authService.generateAccessToken(req.user);
     let refreshToken = await authService.generateRefreshToken(req.user);
-    res.status(200).json({ accessToken: accessToken, refreshToken: refreshToken });
+    res.status(200).json({
+        accessToken: accessToken,
+        refreshToken: refreshToken,
+        username: req.user.username
+    });
 });
 
 router.get('/token', authService.verifyRefreshToken, async (req, res) => {
@@ -17,7 +21,7 @@ router.get('/token', authService.verifyRefreshToken, async (req, res) => {
 
 router.post('/logout', authService.verifyRefreshToken, (req, res) => {
     authService.deleteRefreshToken(req.body.refreshToken).then(() => {
-        res.status("200").json({ "message": "logout success" });
+        res.status("200").json("logout success");
     });
 });
 

@@ -41,7 +41,7 @@ module.exports = {
         const refreshToken = req.body.refreshToken;
         if (refreshToken == null) res.status(401).json({ "status": "Refresh Token is Null" })
         jwt.verify(refreshToken, req.user.refreshSecretToken, (err, user) => {
-            if (err) return res.status(403).json("Token Expired")
+            if (err) return res.status(403).json({ "status": "Token Expired" })
             next()
         });
     },
@@ -51,7 +51,7 @@ module.exports = {
             refreshToken: req.body.refreshToken
         }).then(response => {
             jwt.verify(req.body.refreshToken, req.user.refreshSecretToken, (err, user) => {
-                if (err) return res.status(403).json({ "message": "Access Denied" })
+                if (err) return res.status(403).json({ "status": "Access Denied" })
                 const accessToken = generateAccessToken(req.user);
                 next(accessToken);
             })
@@ -63,7 +63,7 @@ module.exports = {
         authModel.checkPassword(req.body).then(response => {
             next()
         }).catch(response => {
-            res.status(403).json("Password Mismatches")
+            res.status(403).json({ message: "Password Mismatches" })
         })
     },
     deleteRefreshToken: (refreshToken) => {

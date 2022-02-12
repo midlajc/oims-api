@@ -10,7 +10,8 @@ router.post('/login', authService.verifyUser, async (req, res, next) => {
         accessToken: accessToken,
         refreshToken: refreshToken,
         username: req.user.username,
-        name: req.user.name
+        name: req.user.name,
+        role: req.user.role,
     });
 });
 
@@ -22,7 +23,7 @@ router.post('/token', authService.verifyRefreshToken, async (req, res) => {
 
 router.post('/logout', authService.verifyRefreshToken, (req, res) => {
     authService.deleteRefreshToken(req.body.refreshToken).then(() => {
-        res.status("200").json("logout success");
+        res.status("200").json({message:"logout success"});
     });
 });
 

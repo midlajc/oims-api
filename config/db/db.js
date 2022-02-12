@@ -6,11 +6,11 @@ const state = {
 
 module.exports.connect = (done) => {
     const url = process.env.dbLink
-    const dbname = process.env.dbName
+    const dbName = process.env.dbName
 
     mongoClient.connect(url, { useUnifiedTopology: true }, (err, data) => {
         if (err) return done(err)
-        state.db = data.db(dbname)
+        state.db = data.db(dbName)
         done()
     })
 }

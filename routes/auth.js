@@ -9,11 +9,12 @@ router.post('/login', authService.verifyUser, async (req, res, next) => {
     res.status(200).json({
         accessToken: accessToken,
         refreshToken: refreshToken,
-        username: req.user.username
+        username: req.user.username,
+        name: req.user.name
     });
 });
 
-router.get('/token', authService.verifyRefreshToken, async (req, res) => {
+router.post('/token', authService.verifyRefreshToken, async (req, res) => {
     authService.reGenerateAccessToken(req, res, (accessToken) => {
         res.status(200).json({ accessToken: accessToken })
     });

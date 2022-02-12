@@ -3,6 +3,7 @@ const collections = require('../config/collections/collections')
 const dbTrigger = require('../config/db/dbTriggers')
 const bcrypt = require('bcryptjs')
 const { ObjectId } = require('mongodb')
+const { response } = require('../route')
 
 module.exports = {
     //to create a log to login log collection 
@@ -10,7 +11,7 @@ module.exports = {
         return new Promise(async (resolve, reject) => {
             db.get().collection(collections.LOGIN_LOG).insertOne({
                 "_id": await dbTrigger.generateNewId(collections.LOGIN_LOG),
-                "user_id": ObjectId(data.user_id),
+                "userId": ObjectId(data.userId),
                 "accessToken": data.accessToken,
                 "time": Date.now()
             })
@@ -22,7 +23,7 @@ module.exports = {
             db.get().collection(collections.REFRESH_TOKEN).insertOne({
                 "id": await dbTrigger.generateNewId(collections.REFRESH_TOKEN),
                 "refreshToken": data.refreshToken,
-                "user_id": ObjectId(data.user_id),
+                "userId": ObjectId(data.userId),
                 "tokenStatus": true
             })
             resolve()
@@ -31,10 +32,10 @@ module.exports = {
     checkRefreshToken: (data) => {
         return new Promise((resolve, reject) => {
             db.get().collection(collections.REFRESH_TOKEN).findOne({ "refreshToken": data.refreshToken })
-                .then(res => {
-                    if (res == null) reject("token not found")
-                    if (res.tokenStatus == false) reject("token expired")
-                    if (res.user_id != data.user_id) reject("unautherized operation")
+                .then(response => {
+                    if (response == null) reject("Token not Found")
+                    if (response.tokenStatus == false) reject("Token Expired")
+                    if (response.userId.toString() != data.userId.toString()) reject("Unauthorized Operation")
                     resolve();
                 })
         })

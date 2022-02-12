@@ -12,7 +12,6 @@ const app = express();
 app.use(cors())
 
 let getUser = (req, res, next) => {
-    // console.log(req.body);
     appService.getUser(req.headers['username']).then(user => {
         req.user = user;
         next();

@@ -7,7 +7,7 @@ module.exports={
         return new Promise((resolve,reject)=>{
             db.get().collection(collections.USERS_COLLECTION).findOne({username:username})
             .then(response=>{
-                if(response==null) reject("user not found")
+                if(response==null) reject("User not Found")
                 resolve(response)
             })
         })

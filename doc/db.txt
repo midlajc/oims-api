@@ -14,7 +14,6 @@ users collection
     "_id": {
         "$oid": "61746cef0d7a8eb1c4d7e812"
     },
-    "id": id,
     "name": "name",
     "username": "username",
     "password": "bcrypted pass (10)",
@@ -32,7 +31,6 @@ users collection
     "_id": {
         "$oid": "61746cef0d7a8eb1c4d7e812"
     },
-    "id": 1,
     "name": "MIDLAJ C",
     "username": "midlajc",
     "password": "$2a$10$gzMNtEQv5Ym1vOIagGk2OuQ8p1lealXN4PjfEAa8BbRyIncDdTS.2",
@@ -51,7 +49,7 @@ refresh_tokens collection
     },
   "id":1,
   "refreshToken":"refresh token",
-  "user_id":user id,  
+  "userId":user id,  
   "tokenStatus" :true/false
 }
 
@@ -62,7 +60,7 @@ login_log collection
         "$oid": "61747e9f0d7a8eb1c4d7e81c"
     },
     "id": id,
-    "user_id": user id,
+    "userId": user id,
     "accessToken": "",
     "time": ""
 }

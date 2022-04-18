@@ -11,7 +11,7 @@ module.exports = {
     generateLoginLog: (data) => {
         return new Promise(async (resolve, reject) => {
             db.get().collection(collections.LOGIN_LOG).insertOne({
-                "_id": await dbTrigger.generateNewId(collections.LOGIN_LOG),
+                // "_id": await dbTrigger.generateNewId(collections.LOGIN_LOG),
                 "userId": ObjectId(data.userId),
                 "accessToken": data.accessToken,
                 "time": Date.now()
@@ -22,7 +22,7 @@ module.exports = {
     postRefreshToken: (data) => {
         return new Promise(async (resolve, reject) => {
             db.get().collection(collections.REFRESH_TOKEN).insertOne({
-                "id": await dbTrigger.generateNewId(collections.REFRESH_TOKEN),
+                // "id": await dbTrigger.generateNewId(collections.REFRESH_TOKEN),
                 "refreshToken": data.refreshToken,
                 "userId": ObjectId(data.userId),
                 "tokenStatus": true

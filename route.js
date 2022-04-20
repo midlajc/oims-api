@@ -1,14 +1,12 @@
-const express = require('express')
+const express = require("express");
 const router = express();
-const cors=require('cors')
 
-router.use(cors())
+const indexRouter = require("./routes/index");
+const adminRouter = require("./routes/admin");
+const admissionRouter = require("./routes/admission");
 
-const indexRouter = require('./routes/index')
-
-router.use('/', indexRouter);
-// router.use('/auth',authRouter);
-
-
+router.use("/", indexRouter);
+router.use("/admin", adminRouter);
+router.use('/admission',admissionRouter)
 
 module.exports = router;

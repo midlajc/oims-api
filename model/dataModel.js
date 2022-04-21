@@ -14,4 +14,10 @@ module.exports = {
       .find({ board_id: ObjectId(_id) })
       .toArray();
   },
+  getGenders: () => {
+    return db.get().collection(collections.GENDER_COLLECTION).find().toArray();
+  },
+  getStudentTypes:()=>{
+      return db.get().collection(collections.STUDENT_TYPE_COLLECTION).find().toArray()
+  }
 };

@@ -25,4 +25,32 @@ module.exports = {
         });
     });
   },
+  genderList: () => {
+    return new Promise((resolve, reject) => {
+      dataModal
+        .getGenders()
+        .then((res) => {
+          console.log(res);
+          resolve(res);
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err);
+        });
+    });
+  },
+  studentTypeList: () => {
+    return new Promise((resolve, reject) => {
+      dataModal
+        .getStudentTypes()
+        .then((res) => {
+          console.log(res);
+          resolve(res);
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err);
+        });
+    });
+  },
 };

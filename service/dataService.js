@@ -30,11 +30,9 @@ module.exports = {
       dataModal
         .getGenders()
         .then((res) => {
-          console.log(res);
           resolve(res);
         })
         .catch((err) => {
-          console.log(err);
           reject(err);
         });
     });
@@ -44,11 +42,9 @@ module.exports = {
       dataModal
         .getStudentTypes()
         .then((res) => {
-          console.log(res);
           resolve(res);
         })
         .catch((err) => {
-          console.log(err);
           reject(err);
         });
     });

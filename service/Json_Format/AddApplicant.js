@@ -2,8 +2,12 @@ const { ObjectId } = require("mongodb");
 
 function Applicant(data) {
   this.name = data.name;
-  this.dob = new Date(data.date);
-  this.gender = new ObjectId(data.gender);
+  this.dob = new Date(data.dob);
+  this.gender_id = new ObjectId(data.gender);
+  this.board_of_studies_id = data.boardOfStudies
+    ? ObjectId(data.boardOfStudies)
+    : "";
+  this.standard_id = data.standard ? ObjectId(data.standard) : "";
 }
 
 module.exports = {

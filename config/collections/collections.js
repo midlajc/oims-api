@@ -12,6 +12,6 @@ module.exports = {
 
   //admission collections
   APPLICANT_COLLECTION: "applicant_list",
-  APPLICANT_PARENT_COLLECTION: "applicant_parent",
-  APPLICANT_DETAILS_COLLECTION: "applicant_details",
+  APPLICANT_PARENT_COLLECTION: "applicant_parent_details",
+  APPLICANT_DETAILS_COLLECTION: "applicant_other_details",
 };

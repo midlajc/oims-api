@@ -12,6 +12,7 @@ router.post('/login', authService.verifyUser, async (req, res, next) => {
         username: req.user.username,
         name: req.user.name,
         role: req.user.role,
+        roles:req.user.roles
     });
 });
 

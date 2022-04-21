@@ -31,7 +31,8 @@ module.exports = {
     return require("crypto").randomBytes(64).toString("hex");
   },
   verifyToken: (req, res, next) => {
-    const accessHeader = req.headers["authorization"];
+    const accessHeader =
+      req.headers["authorization"] || req.headers["Authorization"];
     const token = accessHeader && accessHeader.split(" ")[1];
     if (token == null) res.status(401).json({ status: "Access Token is Null" });
     jwt.verify(token, req.user.accessSecretToken, (err, user) => {
@@ -89,9 +90,7 @@ module.exports = {
   verifyRoles: (...allowedRoles) => {
     return (req, res, next) => {
       if (!req?.user.roles) return res.sendStatus(401);
-      console.log(req.user.roles);
       const rolesArray = [...allowedRoles];
-      console.log(rolesArray);
       const result = req.user.roles
         .map((role) => rolesArray.includes(role))
         .find((val) => val === true);

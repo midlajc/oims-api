@@ -46,5 +46,30 @@ router
         res.status(500).json(err);
       });
   });
+router
+  .route("/officer-approval")
+  .get(verifyRoles(roles_list.Admin, roles_list.Clerk), (req, res) => {
+    admissionService
+      .officerApprovalList()
+      .then((responses) => {
+        res.status(200).json(responses);
+      })
+      .catch((err) => {
+        res.status(500).json(err);
+      });
+  });
+
+router
+  .route("/manager-approval")
+  .get(verifyRoles(roles_list.Admin, roles_list.Manager), (req, res) => {
+    admissionService
+      .managerApprovalList()
+      .then((responses) => {
+        res.status(200).json(responses);
+      })
+      .catch((err) => {
+        res.status(500).json(err);
+      });
+  });
 
 module.exports = router;

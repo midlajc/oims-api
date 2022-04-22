@@ -53,4 +53,28 @@ module.exports = {
         });
     });
   },
+  officerApprovalList: () => {
+    return new Promise((resolve, reject) => {
+      admissionModel
+        .getOfficerApprovalList()
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
+  managerApprovalList: () => {
+    return new Promise((resolve, reject) => {
+      admissionModel
+        .getManagerApprovalList()
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
 };

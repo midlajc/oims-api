@@ -4,6 +4,7 @@ function Applicant(data) {
   this.name = data.name;
   this.dob = new Date(data.dob);
   this.gender_id = data.gender ? ObjectId(data.gender) : "";
+  this.student_type_id = ObjectId(data.studentType);
   this.board_of_studies_id = data.boardOfStudies
     ? ObjectId(data.boardOfStudies)
     : "";

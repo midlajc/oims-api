@@ -29,7 +29,7 @@ router
           res.status(200).json(responses);
         })
         .catch((err) => {
-          res.status(500).json("Internal Server Error");
+          res.status(500).json(err);
         });
     }
   );
@@ -43,7 +43,7 @@ router
         res.status(200).json(responses);
       })
       .catch((err) => {
-        res.status(500).json("Internal Server Error");
+        res.status(500).json(err);
       });
   });
 

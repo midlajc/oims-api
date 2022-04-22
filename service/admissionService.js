@@ -3,7 +3,8 @@ const {
   Applicant,
   ParentDetails,
   OtherDetails,
-} = require("./schema/AddApplicant");
+  AdmissionStatus,
+} = require("./schema/AdmissionSchema");
 
 module.exports = {
   addApplicant: (data) => {
@@ -13,9 +14,11 @@ module.exports = {
         data._id = response.insertedId;
         const parentDetails = new ParentDetails(data);
         const otherDetails = new OtherDetails(data);
+        const admissionStatus = new AdmissionStatus(data);
         Promise.all([
           admissionModel.addParentDetails(parentDetails),
           admissionModel.addOtherDetails(otherDetails),
+          admissionModel.addAdmissionStatus(admissionStatus),
         ])
           .then((response) => {
             resolve(response);
@@ -30,6 +33,18 @@ module.exports = {
     return new Promise((resolve, reject) => {
       admissionModel
         .getApplicantList()
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
+  primaryVerificationList: () => {
+    return new Promise((resolve, reject) => {
+      admissionModel
+        .getPrimaryVerificationList()
         .then((response) => {
           resolve(response);
         })

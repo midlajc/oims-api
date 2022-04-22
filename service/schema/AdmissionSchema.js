@@ -47,8 +47,16 @@ function OtherDetails(data) {
   this.doctor_email = data.doctorEmail;
 }
 
+function AdmissionStatus(data) {
+  this.applicant_id = ObjectId(data._id);
+  this.primary_verification_status = false;
+  this.officer_approval_status = false;
+  this.manager_approval_status = false;
+}
+
 module.exports = {
   Applicant,
   ParentDetails,
   OtherDetails,
+  AdmissionStatus,
 };

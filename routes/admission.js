@@ -34,4 +34,17 @@ router
     }
   );
 
+router
+  .route("/primary-verification")
+  .get(verifyRoles(roles_list.Admin, roles_list.Clerk), (req, res) => {
+    admissionService
+      .primaryVerificationList()
+      .then((responses) => {
+        res.status(200).json(responses);
+      })
+      .catch((err) => {
+        res.status(500).json("Internal Server Error");
+      });
+  });
+
 module.exports = router;

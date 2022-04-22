@@ -21,11 +21,32 @@ module.exports = {
       .collection(collections.APPLICANT_DETAILS_COLLECTION)
       .insertOne(otherDetails);
   },
+  addAdmissionStatus: (admissionStatus) => {
+    return db
+      .get()
+      .collection(collections.ADMISSION_STATUS_COLLECTION)
+      .insertOne(admissionStatus);
+  },
   getApplicantList: () => {
     return db
       .get()
       .collection(views.APPLICANT_VIEW)
       .find()
+      .project({
+        _id: 1,
+        name: 1,
+        dob: 1,
+        gender: "$gender.name",
+        board_of_studies: "$board_of_studies.name",
+        standard: "$standard.name",
+      })
+      .toArray();
+  },
+  getPrimaryVerificationList: () => {
+    return db
+      .get()
+      .collection(views.APPLICANT_VIEW)
+      .find({'admission_status.primary_verification_status':false})
       .project({
         _id: 1,
         name: 1,

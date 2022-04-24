@@ -15,4 +15,9 @@ module.exports = {
   APPLICANT_PARENT_COLLECTION: "applicant_parent_details",
   APPLICANT_DETAILS_COLLECTION: "applicant_other_details",
   ADMISSION_STATUS_COLLECTION: "admission_status",
+
+  //student collection
+  STUDENT_COLLECTION: "students",
+  STUDENT_PARENT_COLLECTION: "student_parent_details",
+  STUDENT_DETAILS_COLLECTION: "student_other_details",
 };

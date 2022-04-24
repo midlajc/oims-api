@@ -82,9 +82,14 @@ module.exports = {
   },
   deleteRefreshToken: (refreshToken) => {
     return new Promise((resolve, reject) => {
-      authModel.deleteRefreshToken(refreshToken).then(() => {
-        resolve();
-      });
+      authModel
+        .deleteRefreshToken(refreshToken)
+        .then(() => {
+          resolve();
+        })
+        .catch((err) => {
+          reject(err);
+        });
     });
   },
   verifyRoles: (...allowedRoles) => {

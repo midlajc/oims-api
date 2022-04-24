@@ -1,0 +1,53 @@
+/auth
+authentication router to generate jwt token and verify user
+
+/auth/login
+(post) to login
+
+/auth/token
+(post) to regenerate Access token
+
+/auth/logout 
+(post) to logout from application
+
+
+/admission
+to perform various admission operation
+
+/admission/add-applicant
+(post) to add new applicant
+
+/admission/applicant-list
+(get) to get applicant list
+
+/admission/primary-verification
+(get) to get applicant list to be verified
+(put) to verify application
+
+/admission/officer-approval
+(get) to get applicant list to be approved by office clerk
+(put) approval from office clerk
+
+/admission/manager-approval
+(get) to get applicant list to be approved by campus manager
+(put) approval from campus manager
+
+/admission/admitted-students
+(get) to get list of admitted students
+
+
+
+/data
+data api
+
+/data/board-of-studies
+(get) to get board-of-studies list
+
+/data/standards:_id
+(get) to get standards list based on board-of-studies id
+
+/data/gender
+(get) to get gender list
+
+/data/student-type
+(get) to get student-type list

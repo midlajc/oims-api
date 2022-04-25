@@ -1,4 +1,4 @@
-var express = require("express");
+const express = require("express");
 const roles_list = require("../config/roles_list");
 const { verifyRoles } = require("../service/authService");
 const router = express.Router();
@@ -135,13 +135,13 @@ router
     verifyRoles(roles_list.Admin, roles_list.Clerk, roles_list.Manager),
     (req, res) => {
       admissionService
-      .admittedStudentList()
-      .then((responses) => {
-        res.status(200).json(responses);
-      })
-      .catch((err) => {
-        res.status(500).json(err);
-      });
+        .admittedStudentList()
+        .then((responses) => {
+          res.status(200).json(responses);
+        })
+        .catch((err) => {
+          res.status(500).json(err);
+        });
     }
   );
 

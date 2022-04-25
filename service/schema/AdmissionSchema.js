@@ -9,6 +9,7 @@ function Applicant(data) {
     ? ObjectId(data.boardOfStudies)
     : "";
   this.standard_id = data.standard ? ObjectId(data.standard) : "";
+  this.created_at = new Date();
 }
 
 function ApplicantParentDetails(data) {
@@ -31,6 +32,7 @@ function ApplicantParentDetails(data) {
   this.guardian_mobile = data.guardianMobile;
   this.guardian_office_address = data.guardianOfficeAddress;
   this.guardian_email = data.guardianEmail;
+  this.created_at = new Date();
 }
 
 function ApplicantOtherDetails(data) {
@@ -46,6 +48,7 @@ function ApplicantOtherDetails(data) {
   this.doctor_name = data.doctorName;
   this.doctor_mobile = data.doctorMobile;
   this.doctor_email = data.doctorEmail;
+  this.created_at = new Date();
 }
 
 function AdmissionStatus(data) {
@@ -53,6 +56,7 @@ function AdmissionStatus(data) {
   this.primary_verification_status = false;
   this.officer_approval_status = false;
   this.manager_approval_status = false;
+  this.created_at = new Date();
 }
 
 function Student(data) {
@@ -65,6 +69,7 @@ function Student(data) {
     ? ObjectId(data.board_of_studies_id)
     : "";
   this.standard_id = data.standard_id ? ObjectId(data.standard_id) : "";
+  this.created_at = new Date();
 }
 
 function StudentParentDetails(data) {
@@ -88,6 +93,7 @@ function StudentParentDetails(data) {
   this.guardian_mobile = data.guardian_mobile;
   this.guardian_office_address = data.guardian_office_address;
   this.guardian_email = data.guardian_email;
+  this.created_at = new Date();
 }
 
 function StudentOtherDetails(data) {
@@ -104,6 +110,7 @@ function StudentOtherDetails(data) {
   this.doctor_name = data.doctor_name;
   this.doctor_mobile = data.doctor_mobile;
   this.doctor_email = data.doctor_email;
+  this.created_at = new Date();
 }
 
 module.exports = {

@@ -51,3 +51,11 @@ data api
 
 /data/student-type
 (get) to get student-type list
+
+
+
+/public
+open apis
+
+/public/sponsor-registration
+(post) sponsor registration api

@@ -34,6 +34,7 @@ db.connect((err) => {
 
 const rootRouter = require("./route");
 const authRouter = require("./routes/auth");
+const publicRouter = require("./routes/public");
 
 const authService = require("./service/authService");
 
@@ -44,6 +45,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/auth", getUser, authRouter);
+app.use("/public", publicRouter);
 app.use("/", getUser, authService.verifyToken, rootRouter);
 
 module.exports = app;

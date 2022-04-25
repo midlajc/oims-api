@@ -20,4 +20,7 @@ module.exports = {
   STUDENT_COLLECTION: "students",
   STUDENT_PARENT_COLLECTION: "student_parent_details",
   STUDENT_DETAILS_COLLECTION: "student_other_details",
+
+  //sponsor registration
+  SPONSOR_APPLICATION_COLLECTION: "sponsor_application",
 };

@@ -16,8 +16,7 @@ to perform various admission operation
 
 /admission/add-applicant
 (post) to add new applicant
-
-/admission/applicant-list
+applicant-list
 (get) to get applicant list
 
 /admission/primary-verification
@@ -59,3 +58,10 @@ open apis
 
 /public/sponsor-registration
 (post) sponsor registration api
+
+
+/sponsor
+api for sponsor management
+
+/sponsor/sponsor-application
+(get) to get sponsor applications

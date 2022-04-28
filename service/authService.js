@@ -35,9 +35,13 @@ module.exports = {
     const accessHeader =
       req.headers["authorization"] || req.headers["Authorization"];
     const token = accessHeader && accessHeader.split(" ")[1];
-    if (token == null) res.status(401).json({ status: "Access Token is Null" });
+    if (token == null) {
+      res.status(401).json({ status: "Access Token is Null" });
+    }
     jwt.verify(token, req.user.accessSecretToken, (err, user) => {
-      if (err) return res.status(403).json({ status: "Token Expired" });
+      if (err) {
+        return res.status(403).json({ status: "Token Expired" });
+      }
       next();
     });
   },
@@ -46,7 +50,9 @@ module.exports = {
     if (refreshToken == null)
       res.status(401).json({ status: "Refresh Token is Null" });
     jwt.verify(refreshToken, req.user.refreshSecretToken, (err, user) => {
-      if (err) return res.status(403).json({ status: "Token Expired" });
+      if (err) {
+        return res.status(403).json({ status: "Token Expired" });
+      }
       next();
     });
   },
@@ -61,7 +67,9 @@ module.exports = {
           req.body.refreshToken,
           req.user.refreshSecretToken,
           (err, user) => {
-            if (err) return res.status(403).json({ status: "Access Denied" });
+            if (err) {
+              return res.status(403).json({ status: "Access Denied" });
+            }
             const accessToken = generateAccessToken(req.user);
             next(accessToken);
           }
@@ -104,7 +112,7 @@ module.exports = {
       next();
     };
   },
-  hashPassword: async(password) => {
+  hashPassword: async (password) => {
     return await bcryptjs.hash(password, 10);
   },
 };

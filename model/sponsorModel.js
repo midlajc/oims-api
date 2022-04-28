@@ -56,13 +56,27 @@ module.exports = {
         {
           projection: {
             name: "$user.name",
-            dob:1,
-            gender:'$gender.name',
-            username:'$user.username',
-            mobile:1,
-            email:1,
+            dob: 1,
+            gender: "$gender.name",
+            username: "$user.username",
+            mobile: 1,
+            email: 1,
           },
         }
       );
+  },
+  getSponsorList: () => {
+    return db
+      .get()
+      .collection(views.SPONSOR_VIEW)
+      .find()
+      .project({
+        name: "$user.name",
+        dob: 1,
+        mobile: 1,
+        email: 1,
+        gender: "$gender.name",
+      })
+      .toArray();
   },
 };

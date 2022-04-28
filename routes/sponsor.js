@@ -31,6 +31,22 @@ router
       });
   });
 
+router
+  .route("/sponsor-list")
+  .get(
+    verifyRoles(roles_list.Admin, roles_list.Clerk, roles_list.Manager),
+    (req, res) => {
+      sponsorService
+        .SponsorList()
+        .then((response) => {
+          res.status(200).json(response);
+        })
+        .catch((err) => {
+          res.status(500).json(err);
+        });
+    }
+  );
+
 router.route("/profile").get(verifyRoles(roles_list.Sponsor), (req, res) => {
   sponsorService
     .userProfile(req.user._id)

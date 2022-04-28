@@ -1,4 +1,3 @@
-const { ObjectId } = require("mongodb");
 const sponsorModel = require("../model/sponsorModel");
 const { hashPassword } = require("./authService");
 const { SponsorLogin, Sponsor } = require("./schema/SponsorSchema");
@@ -54,6 +53,18 @@ module.exports = {
     return new Promise((resolve, reject) => {
       sponsorModel
         .getUserProfile(user_id)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
+  SponsorList: () => {
+    return new Promise((resolve, reject) => {
+      sponsorModel
+        .getSponsorList()
         .then((response) => {
           resolve(response);
         })

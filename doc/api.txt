@@ -69,3 +69,10 @@ api for sponsor management
 
 /sponsor/profile
 (get) to fetch sponsor info
+
+
+/students
+api for student management
+
+/students/student-list
+(get) to fetch student list

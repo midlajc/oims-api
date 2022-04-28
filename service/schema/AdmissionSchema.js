@@ -5,9 +5,6 @@ function Applicant(data) {
   this.dob = new Date(data.dob);
   this.gender_id = data.gender ? ObjectId(data.gender) : "";
   this.student_type_id = ObjectId(data.studentType);
-  this.board_of_studies_id = data.boardOfStudies
-    ? ObjectId(data.boardOfStudies)
-    : "";
   this.standard_id = data.standard ? ObjectId(data.standard) : "";
   this.created_at = new Date();
 }
@@ -65,9 +62,6 @@ function Student(data) {
   this.dob = new Date(data.dob);
   this.gender_id = data.gender_id ? ObjectId(data.gender_id) : "";
   this.student_type_id = ObjectId(data.student_type_id);
-  this.board_of_studies_id = data.board_of_studies_id
-    ? ObjectId(data.board_of_studies_id)
-    : "";
   this.standard_id = data.standard_id ? ObjectId(data.standard_id) : "";
   this.created_at = new Date();
 }

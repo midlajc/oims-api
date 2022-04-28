@@ -13,7 +13,7 @@ module.exports = {
   Sponsor: function (data) {
     this.user_id = data.user_id;
     this.dob = new Date(data.dob);
-    this.gender_id = ObjectId(data.gender);
+    this.gender_id = ObjectId(data.gender_id);
     this.mobile = data.mobile;
     this.email = data.email;
     this.permanent_address = data.permanent_address;

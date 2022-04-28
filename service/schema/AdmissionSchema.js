@@ -13,7 +13,7 @@ function Applicant(data) {
 }
 
 function ApplicantParentDetails(data) {
-  this.applicant_id = ObjectId(data._id);
+  this.applicant_id = ObjectId(data.applicant_id);
   this.father_name = data.fatherName;
   this.father_resi_address = data.fatherResiAddress;
   this.father_pin = data.fatherPin;
@@ -36,7 +36,7 @@ function ApplicantParentDetails(data) {
 }
 
 function ApplicantOtherDetails(data) {
-  this.applicant_id = ObjectId(data._id);
+  this.applicant_id = ObjectId(data.applicant_id);
   this.emergency_contact = data.emergencyContact;
   this.emergency_contact_address = data.emergencyContactAddress;
   this.pickup_method = data.pickupMethod;
@@ -52,7 +52,7 @@ function ApplicantOtherDetails(data) {
 }
 
 function AdmissionStatus(data) {
-  this.applicant_id = ObjectId(data._id);
+  this.applicant_id = ObjectId(data.applicant_id);
   this.primary_verification_status = false;
   this.officer_approval_status = false;
   this.manager_approval_status = false;
@@ -60,7 +60,7 @@ function AdmissionStatus(data) {
 }
 
 function Student(data) {
-  this._id = ObjectId(data._id);
+  // this._id = ObjectId(data._id);
   this.name = data.name;
   this.dob = new Date(data.dob);
   this.gender_id = data.gender_id ? ObjectId(data.gender_id) : "";
@@ -73,8 +73,8 @@ function Student(data) {
 }
 
 function StudentParentDetails(data) {
-  this._id = ObjectId(data.applicant_id);
-  this.student_id = ObjectId(data.applicant_id);
+  // this._id = ObjectId(data.applicant_id);
+  this.student_id = ObjectId(data.student_id);
   this.father_name = data.father_name;
   this.father_resi_address = data.father_resi_address;
   this.father_pin = data.father_pin;
@@ -97,8 +97,8 @@ function StudentParentDetails(data) {
 }
 
 function StudentOtherDetails(data) {
-  this._id = ObjectId(data.applicant_id);
-  this.student_id = ObjectId(data.applicant_id);
+  // this._id = ObjectId(data.applicant_id);
+  this.student_id = ObjectId(data.student_id);
   this.emergency_contact = data.emergency_contact;
   this.emergency_contact_address = data.emergency_contact_address;
   this.pickup_method = data.pickup_method;

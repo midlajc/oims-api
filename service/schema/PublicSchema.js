@@ -1,7 +1,7 @@
 const { ObjectId } = require("mongodb");
 
 module.exports = {
-  Sponsor: function (data) {
+  SponsorApplication: function (data) {
     this.name = data.name;
     this.dob = new Date(data.dob);
     this.gender_id = ObjectId(data.gender);

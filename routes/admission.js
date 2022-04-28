@@ -48,13 +48,14 @@ router
   })
   .put(verifyRoles(roles_list.Admin, roles_list.Clerk), (req, res) => {
     let props = {
-      _id: req.body._id,
+      applicant_id: req.body.applicant_id,
       set: {
-        primary_verification_status: false,
+        primary_verification_status: true,
         officer_approval_status: false,
         manager_approval_status: false,
       },
     };
+    console.log(props);
     admissionService
       .updateAdmissionStatus(props)
       .then((responses) => {
@@ -79,7 +80,7 @@ router
   })
   .put(verifyRoles(roles_list.Admin, roles_list.Clerk), (req, res) => {
     let props = {
-      _id: req.body._id,
+      applicant_id: req.body.applicant_id,
       set: {
         primary_verification_status: true,
         officer_approval_status: true,
@@ -110,7 +111,7 @@ router
   })
   .put(verifyRoles(roles_list.Admin, roles_list.Manager), (req, res) => {
     let props = {
-      _id: req.body._id,
+      applicant_id: req.body.applicant_id,
       set: {
         primary_verification_status: true,
         officer_approval_status: true,
@@ -118,7 +119,7 @@ router
       },
     };
     Promise.all([
-      admissionService.addStudent(props._id),
+      admissionService.addStudent(props.applicant_id),
       admissionService.updateAdmissionStatus(props),
     ])
       .then((responses) => {

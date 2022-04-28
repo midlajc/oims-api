@@ -105,38 +105,39 @@ module.exports = {
       .toArray();
   },
   updateAdmissionStatus: (props) => {
+    console.log(props);
     return db
       .get()
       .collection(collections.ADMISSION_STATUS_COLLECTION)
       .updateOne(
-        { applicant_id: ObjectId(props._id) },
+        { applicant_id: ObjectId(props.applicant_id) },
         {
           $set: props.set,
         }
       );
   },
-  getApplicantDetails: (_id) => {
+  getApplicantDetails: (applicant_id) => {
     return db
       .get()
       .collection(collections.APPLICANT_COLLECTION)
       .findOne({
-        _id: ObjectId(_id),
+        _id: ObjectId(applicant_id),
       });
   },
-  getApplicantParentDetails: (_id) => {
+  getApplicantParentDetails: (applicant_id) => {
     return db
       .get()
       .collection(collections.APPLICANT_PARENT_COLLECTION)
       .findOne({
-        applicant_id: ObjectId(_id),
+        applicant_id: ObjectId(applicant_id),
       });
   },
-  getApplicantOtherDetails: (_id) => {
+  getApplicantOtherDetails: (applicant_id) => {
     return db
       .get()
       .collection(collections.APPLICANT_DETAILS_COLLECTION)
       .findOne({
-        applicant_id: ObjectId(_id),
+        applicant_id: ObjectId(applicant_id),
       });
   },
   addStudent: (data) => {

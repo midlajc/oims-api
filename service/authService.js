@@ -1,3 +1,4 @@
+const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const authModel = require("../model/authModel");
 
@@ -102,5 +103,8 @@ module.exports = {
       if (!result) return res.sendStatus(401);
       next();
     };
+  },
+  hashPassword: async(password) => {
+    return await bcryptjs.hash(password, 10);
   },
 };

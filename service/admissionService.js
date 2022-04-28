@@ -14,14 +14,11 @@ module.exports = {
     const applicant = new Applicant(data);
     return new Promise((resolve, reject) => {
       admissionModel.addApplicant(applicant).then((response) => {
-        data._id = response.insertedId;
-        const parentDetails = new ApplicantParentDetails(data);
-        const otherDetails = new ApplicantOtherDetails(data);
-        const admissionStatus = new AdmissionStatus(data);
+        data.applicant_id = response.insertedId;
         Promise.all([
-          admissionModel.addParentDetails(parentDetails),
-          admissionModel.addOtherDetails(otherDetails),
-          admissionModel.addAdmissionStatus(admissionStatus),
+          admissionModel.addParentDetails(new ApplicantParentDetails(data)),
+          admissionModel.addOtherDetails(new ApplicantOtherDetails(data)),
+          admissionModel.addAdmissionStatus(new AdmissionStatus(data)),
         ])
           .then((response) => {
             resolve(response);
@@ -92,29 +89,32 @@ module.exports = {
         });
     });
   },
-  addStudent: (_id) => {
+  addStudent: (applicant_id) => {
     return new Promise((resolve, reject) => {
       Promise.all([
-        admissionModel.getApplicantDetails(_id),
-        admissionModel.getApplicantParentDetails(_id),
-        admissionModel.getApplicantOtherDetails(_id),
+        admissionModel.getApplicantDetails(applicant_id),
+        admissionModel.getApplicantParentDetails(applicant_id),
+        admissionModel.getApplicantOtherDetails(applicant_id),
       ])
         .then(([student, studentParent, studentOther]) => {
-          Promise.all([
-            admissionModel.addStudent(new Student(student)),
-            admissionModel.addStudentParentDetails(
-              new StudentParentDetails(studentParent)
-            ),
-            admissionModel.addStudentOtherDetails(
-              new StudentOtherDetails(studentOther)
-            ),
-          ])
-            .then((response) => {
-              resolve(response);
-            })
-            .catch((err) => {
-              reject(err);
-            });
+          admissionModel.addStudent(new Student(student)).then((response) => {
+            studentParent.student_id = response.insertedId;
+            studentOther.student_id = response.insertedId;
+            Promise.all([
+              admissionModel.addStudentParentDetails(
+                new StudentParentDetails(studentParent)
+              ),
+              admissionModel.addStudentOtherDetails(
+                new StudentOtherDetails(studentOther)
+              ),
+            ])
+              .then((response) => {
+                resolve(response);
+              })
+              .catch((err) => {
+                reject(err);
+              });
+          });
         })
         .catch((err) => {
           reject(err);

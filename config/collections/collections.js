@@ -23,4 +23,7 @@ module.exports = {
 
   //sponsor registration
   SPONSOR_APPLICATION_COLLECTION: "sponsor_application",
+
+  //sponsor collections
+  SPONSOR_COLLECTION: "sponsors",
 };

@@ -18,6 +18,17 @@ router
           res.status(500).json(err);
         });
     }
-  );
+  )
+  .put(verifyRoles(roles_list.Admin, roles_list.Manager), (req, res) => {
+    let application_id = req.body.application_id;
+    sponsorService
+      .approveSponsorApplication(application_id)
+      .then((response) => {
+        res.status(200).json(response);
+      })
+      .catch((err) => {
+        res.status(500).json(err);
+      });
+  });
 
 module.exports = router;

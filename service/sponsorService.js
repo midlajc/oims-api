@@ -50,4 +50,16 @@ module.exports = {
         });
     });
   },
+  userProfile: (user_id) => {
+    return new Promise((resolve, reject) => {
+      sponsorModel
+        .getUserProfile(user_id)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
 };

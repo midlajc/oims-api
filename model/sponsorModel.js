@@ -45,4 +45,24 @@ module.exports = {
         }
       );
   },
+  getUserProfile: (user_id) => {
+    return db
+      .get()
+      .collection(views.SPONSOR_VIEW)
+      .findOne(
+        {
+          user_id: ObjectId(user_id),
+        },
+        {
+          projection: {
+            name: "$user.name",
+            dob:1,
+            gender:'$gender.name',
+            username:'$user.username',
+            mobile:1,
+            email:1,
+          },
+        }
+      );
+  },
 };

@@ -66,3 +66,6 @@ api for sponsor management
 /sponsor/sponsor-application
 (get) to get sponsor applications
 (put) to approve sponsor application
+
+/sponsor/profile
+(get) to fetch sponsor info

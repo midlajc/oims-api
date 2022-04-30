@@ -31,7 +31,6 @@ module.exports = {
                   application_status: true,
                 },
               };
-              console.log(props);
               Promise.all([
                 sponsorModel.addSponsor(new Sponsor(application)),
                 sponsorModel.updateSponsorApplicationStatus(props),

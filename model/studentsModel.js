@@ -19,4 +19,4 @@ module.exports = {
       })
       .toArray();
   },
-};4
+};

@@ -26,4 +26,7 @@ module.exports = {
 
   //sponsor collections
   SPONSOR_COLLECTION: "sponsors",
+
+  //sponsorship collections
+  SPONSORSHIP_COLLECTION: "sponsorships",
 };

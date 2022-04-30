@@ -19,4 +19,17 @@ router
     }
   );
 
+router
+  .route("/sponsorship-list")
+  .get(verifyRoles(roles_list.Admin, roles_list.Clerk), (req, res) => {
+    sponsorshipService
+      .sponsorshipList()
+      .then((response) => {
+        res.status(200).json(response);
+      })
+      .catch((err) => {
+        res.status(500).json(err);
+      });
+  });
+
 module.exports = router;

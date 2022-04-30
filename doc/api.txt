@@ -76,3 +76,13 @@ api for student management
 
 /students/student-list
 (get) to fetch student list
+
+
+/sponsorship
+api for sponsorship management
+
+/sponsorship/new-sponsorship
+(post) create new sponsorship
+
+/sponsorship/sponsorship-list
+(get) to fetch sponsorship list

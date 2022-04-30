@@ -10,4 +10,7 @@ module.exports = {
       .collection(collections.SPONSORSHIP_COLLECTION)
       .insertOne(data);
   },
+  getSponsorShipList: () => {
+    return db.get().collection(views.SPONSORSHIP_VIEW).find().toArray();
+  },
 };

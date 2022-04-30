@@ -14,4 +14,16 @@ module.exports = {
         });
     });
   },
+  sponsorshipList: () => {
+    return new Promise((resolve, reject) => {
+      sponsorshipModel
+        .getSponsorShipList()
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
 };

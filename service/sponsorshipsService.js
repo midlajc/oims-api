@@ -17,7 +17,7 @@ module.exports = {
   sponsorshipList: () => {
     return new Promise((resolve, reject) => {
       sponsorshipModel
-        .getSponsorShipList()
+        .getSponsorshipList()
         .then((response) => {
           resolve(response);
         })

@@ -16,6 +16,7 @@ module.exports = {
         standard: "$standard.name",
         board_of_studies: "$board_of_studies.name",
         student_type: "$student_type.name",
+        address: 1,
       })
       .toArray();
   },

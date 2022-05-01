@@ -2,6 +2,7 @@ const { ObjectId } = require("mongodb");
 
 module.exports = {
   Sponsorship: function (data) {
+    this.sponsorship_no = parseInt(data.sponsorshipNo);
     this.student_id = ObjectId(data.studentId);
     this.sponsor_id = ObjectId(data.sponsorId);
     this.sponsorship_amount = parseInt(data.amount);

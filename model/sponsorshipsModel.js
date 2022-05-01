@@ -10,7 +10,23 @@ module.exports = {
       .collection(collections.SPONSORSHIP_COLLECTION)
       .insertOne(data);
   },
-  getSponsorShipList: () => {
-    return db.get().collection(views.SPONSORSHIP_VIEW).find().toArray();
+  getSponsorshipList: () => {
+    return db
+      .get()
+      .collection(views.SPONSORSHIP_VIEW)
+      .find()
+      .project({
+        student_name: "$student.name",
+        student_gender: "$gender.name",
+        student_dob: "$student.dob",
+        student_standard: "$student.standard.name",
+        student_mother_name: "$student.student_parent_details.mother_name",
+        sponsor_name: "$sponsor.user.name",
+        sponsor_email: "$sponsor.email",
+        sponsor_mobile: "$sponsor.mobile",
+        payment_interval:1,
+        sponsorship_amount:1
+      })
+      .toArray();
   },
 };

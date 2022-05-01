@@ -6,6 +6,7 @@ function Applicant(data) {
   this.gender_id = data.gender ? ObjectId(data.gender) : "";
   this.student_type_id = ObjectId(data.studentType);
   this.standard_id = data.standard ? ObjectId(data.standard) : "";
+  this.address = data.address;
   this.created_at = new Date();
 }
 
@@ -63,6 +64,7 @@ function Student(data) {
   this.gender_id = data.gender_id ? ObjectId(data.gender_id) : "";
   this.student_type_id = ObjectId(data.student_type_id);
   this.standard_id = data.standard_id ? ObjectId(data.standard_id) : "";
+  this.address = data.address;
   this.created_at = new Date();
 }
 

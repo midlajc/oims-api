@@ -70,6 +70,9 @@ api for sponsor management
 /sponsor/profile
 (get) to fetch sponsor info
 
+/sponsor/sponsorships
+(get) fetch sponsorships of individual sponsor
+
 
 /students
 api for student management
@@ -78,11 +81,14 @@ api for student management
 (get) to fetch student list
 
 
-/sponsorship
+/sponsorships
 api for sponsorship management
 
-/sponsorship/new-sponsorship
+/sponsorships/new-sponsorship
 (post) create new sponsorship
 
-/sponsorship/sponsorship-list
+/sponsorships/sponsorship-list
 (get) to fetch sponsorship list
+
+/sponsorships/sponsorships-by-sponsor-id/:sponsor_id
+(get) fetch sponsorships of individual sponsor

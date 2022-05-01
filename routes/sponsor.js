@@ -3,6 +3,7 @@ const router = express.Router();
 const roles_list = require("../config/roles_list");
 const { verifyRoles } = require("../service/authService");
 const sponsorService = require("../service/sponsorService");
+const sponsorshipsService = require("../service/sponsorshipsService");
 
 router
   .route("/sponsor-application")
@@ -57,5 +58,20 @@ router.route("/profile").get(verifyRoles(roles_list.Sponsor), (req, res) => {
       res.status(500).json(err);
     });
 });
+
+
+//to fetch sponsorships of individual sponsor
+router
+  .route("/sponsorships")
+  .get(verifyRoles(roles_list.Sponsor), (req, res) => {
+    sponsorshipsService
+      .sponsorshipListBySponsorId(req.user.sponsorId)
+      .then((response) => {
+        res.status(200).json(response);
+      })
+      .catch((err) => {
+        res.status(500).json(err);
+      });
+  });
 
 module.exports = router;

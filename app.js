@@ -14,8 +14,11 @@ app.use(cors());
 let getUser = (req, res, next) => {
   appService
     .getUser(req.headers["username"])
-    .then((user) => {
+    .then(async (user) => {
       user.roles = Object.values(user.roles);
+      if (user.role === "sponsor") {
+        user.sponsorId = await appService.getSponsorId(user._id);
+      }
       req.user = user;
       next();
     })

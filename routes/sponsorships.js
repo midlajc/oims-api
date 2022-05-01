@@ -32,4 +32,22 @@ router
       });
   });
 
+//to fetch sponsorships of individual sponsor
+router
+  .route("/sponsorships-by-sponsor-id/:sponsor_id")
+  .get(
+    verifyRoles(roles_list.Admin, roles_list.Clerk, roles_list.Manager),
+    (req, res) => {
+      const sponsor_id = req.params.sponsor_id;
+      sponsorshipService
+        .sponsorshipListBySponsorId(sponsor_id)
+        .then((response) => {
+          res.status(200).json(response);
+        })
+        .catch((err) => {
+          res.status(500).json(err);
+        });
+    }
+  );
+
 module.exports = router;

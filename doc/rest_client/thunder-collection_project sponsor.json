@@ -1,0 +1,93 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "project sponsor",
+    "dateExported": "2022-05-02T11:25:42.826Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "3e5593a1-1404-471d-96b7-f996e7258746",
+            "name": "user",
+            "containerId": "",
+            "created": "2022-04-28T08:45:55.185Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "34a27951-5db4-4bc6-b583-6025ca98fe29",
+            "name": "home",
+            "containerId": "",
+            "created": "2022-05-01T08:05:22.391Z",
+            "sortNum": 20000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "0efc92d1-caaa-450e-ab95-1bcf89eb0443",
+            "colId": "b1073825-6b6b-4a65-aa9d-80d459852226",
+            "containerId": "3e5593a1-1404-471d-96b7-f996e7258746",
+            "name": "profile",
+            "url": "localhost:8000/sponsor/profile",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2022-04-28T08:46:09.550Z",
+            "modified": "2022-04-29T03:05:54.697Z",
+            "headers": [
+                {
+                    "name": "username",
+                    "value": "midlaj_c"
+                }
+            ],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjZhNGRkZTVlZjg3MjQ1NTkyMmY4OTUiLCJuYW1lIjoiTWlkbGFqIEMiLCJ1c2VybmFtZSI6InNwb25zb3IiLCJhY2Nlc3NTZWNyZXRUb2tlbiI6ImI5MWRmYjJkYTdlNmRmN2JhYzY1MjVmYTRlNThjNTcxNGRlMmU5ODRkNzVkOTM0ZTZkM2JmMWY2MTY2YjA5M2M2NjgwOTc3NzI0ZmVjMWM3OGYxNDliYTkyZTg1Zjk3MzE4ZjMxODhhNDAzMDFkZDRiNzZhZDg0NzMyMjFjOWVlIiwicmVmcmVzaFNlY3JldFRva2VuIjoiMGRkNjAzNmEyZTczODAxYjMyYWY5ZjFjYWQ3NTY2OWZhMDI2OWVkMDc2Y2MxMzEzZjJlNzQ5OGVmZmRmNWEwYjM5OGYzY2M5ZjU0NGUzYWZlOThmMWRlNThhNzY4YmRmYmExMDg2ZjNlYjc5MDZkZjg0MGExMGRiMjk4NTU5ZDMiLCJyb2xlSWQiOiI2MjY1M2U1NDcwNjJiMDQyODJiMGMwMjEiLCJyb2xlcyI6WyJzcG9uc29yIl0sInJvbGUiOiJzcG9uc29yIiwiaWF0IjoxNjUxMTM2OTgzLCJleHAiOjI2NTEyMjMzODN9.DARAHMRxpuw91rCocJId25kENN1PmbtCDAZqctY2E_o"
+            },
+            "tests": []
+        },
+        {
+            "_id": "87babee9-3445-4118-8a12-bc66c181d586",
+            "colId": "b1073825-6b6b-4a65-aa9d-80d459852226",
+            "containerId": "34a27951-5db4-4bc6-b583-6025ca98fe29",
+            "name": "sponsorships",
+            "url": "localhost:8000/sponsor/sponsorships",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2022-05-01T10:17:06.281Z",
+            "modified": "2022-05-01T10:18:19.560Z",
+            "headers": [
+                {
+                    "name": "username",
+                    "value": "midlaj_c"
+                }
+            ],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjZhNGRkZTVlZjg3MjQ1NTkyMmY4OTUiLCJuYW1lIjoiTWlkbGFqIEMiLCJ1c2VybmFtZSI6InNwb25zb3IiLCJhY2Nlc3NTZWNyZXRUb2tlbiI6ImI5MWRmYjJkYTdlNmRmN2JhYzY1MjVmYTRlNThjNTcxNGRlMmU5ODRkNzVkOTM0ZTZkM2JmMWY2MTY2YjA5M2M2NjgwOTc3NzI0ZmVjMWM3OGYxNDliYTkyZTg1Zjk3MzE4ZjMxODhhNDAzMDFkZDRiNzZhZDg0NzMyMjFjOWVlIiwicmVmcmVzaFNlY3JldFRva2VuIjoiMGRkNjAzNmEyZTczODAxYjMyYWY5ZjFjYWQ3NTY2OWZhMDI2OWVkMDc2Y2MxMzEzZjJlNzQ5OGVmZmRmNWEwYjM5OGYzY2M5ZjU0NGUzYWZlOThmMWRlNThhNzY4YmRmYmExMDg2ZjNlYjc5MDZkZjg0MGExMGRiMjk4NTU5ZDMiLCJyb2xlSWQiOiI2MjY1M2U1NDcwNjJiMDQyODJiMGMwMjEiLCJyb2xlcyI6WyJzcG9uc29yIl0sInJvbGUiOiJzcG9uc29yIiwiaWF0IjoxNjUxMTM2OTgzLCJleHAiOjI2NTEyMjMzODN9.DARAHMRxpuw91rCocJId25kENN1PmbtCDAZqctY2E_o"
+            },
+            "tests": []
+        },
+        {
+            "_id": "e88aa9a2-f0a0-432b-b5ea-2664a4e0f971",
+            "colId": "b1073825-6b6b-4a65-aa9d-80d459852226",
+            "containerId": "34a27951-5db4-4bc6-b583-6025ca98fe29",
+            "name": "fetch-dues",
+            "url": "localhost:8000/sponsor/fetch-dues",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2022-05-02T03:49:55.074Z",
+            "modified": "2022-05-02T03:50:14.367Z",
+            "headers": [
+                {
+                    "name": "username",
+                    "value": "midlaj_c"
+                }
+            ],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjZhNGRkZTVlZjg3MjQ1NTkyMmY4OTUiLCJuYW1lIjoiTWlkbGFqIEMiLCJ1c2VybmFtZSI6InNwb25zb3IiLCJhY2Nlc3NTZWNyZXRUb2tlbiI6ImI5MWRmYjJkYTdlNmRmN2JhYzY1MjVmYTRlNThjNTcxNGRlMmU5ODRkNzVkOTM0ZTZkM2JmMWY2MTY2YjA5M2M2NjgwOTc3NzI0ZmVjMWM3OGYxNDliYTkyZTg1Zjk3MzE4ZjMxODhhNDAzMDFkZDRiNzZhZDg0NzMyMjFjOWVlIiwicmVmcmVzaFNlY3JldFRva2VuIjoiMGRkNjAzNmEyZTczODAxYjMyYWY5ZjFjYWQ3NTY2OWZhMDI2OWVkMDc2Y2MxMzEzZjJlNzQ5OGVmZmRmNWEwYjM5OGYzY2M5ZjU0NGUzYWZlOThmMWRlNThhNzY4YmRmYmExMDg2ZjNlYjc5MDZkZjg0MGExMGRiMjk4NTU5ZDMiLCJyb2xlSWQiOiI2MjY1M2U1NDcwNjJiMDQyODJiMGMwMjEiLCJyb2xlcyI6WyJzcG9uc29yIl0sInJvbGUiOiJzcG9uc29yIiwiaWF0IjoxNjUxMTM2OTgzLCJleHAiOjI2NTEyMjMzODN9.DARAHMRxpuw91rCocJId25kENN1PmbtCDAZqctY2E_o"
+            },
+            "tests": []
+        }
+    ]
+}

@@ -72,17 +72,27 @@ module.exports = {
         });
     });
   },
-  calculateDue: (sponsorships) => {
+  calculateDue: (sponsor_id) => {
     return new Promise((resolve, reject) => {
-      Promise.all(
-        sponsorships.map((sponsorship, index) => {
-          return sponsorModel.fetchDues(sponsorship._id);
+      sponsorModel
+        .fetchDues(sponsor_id)
+        .then((dues) => {
+          // let total = {
+          //   total_to_pay: 0,
+          //   current_to_pay: 0,
+          //   previous_to_pay: 0,
+          // };
+          // await dues.map((value, index) => {
+          //   total.total_to_pay += parseInt(dues.total_to_pay);
+          //   total.current_to_pay += parseInt(dues.current_to_pay);
+          //   total.previous_to_pay += parseInt(dues.previous_to_pay);
+          // });
+          // total.sponsorship_wise = dues;
+          resolve(dues);
         })
-      ).then((dues) => {
-        resolve(dues);
-      }).catch(err=>{
-        reject(err)
-      });
+        .catch((err) => {
+          reject(err);
+        });
     });
   },
 };

@@ -79,15 +79,56 @@ module.exports = {
       })
       .toArray();
   },
-  fetchDues: (sponsorship_id) => {
+  fetchDues: (sponsor_id) => {
     return db
       .get()
       .collection(views.DUE_VIEW)
-      .findOne(
-        { _id: ObjectId(sponsorship_id) },
+      .aggregate([
         {
-          $projection: {},
-        }
-      );
+          $match: {
+            sponsor_id: ObjectId(sponsor_id),
+          },
+        },
+        {
+          $project: {
+            sponsor_id: 1,
+            total_to_pay: 1,
+            current_to_pay: 1,
+            previous_to_pay: 1,
+          },
+        },
+        {
+          $group: {
+            _id: "$sponsor_id",
+            sponsorship_wise: {
+              $push: "$$ROOT",
+            },
+          },
+        },
+        {
+          $set: {
+            total_to_pay: {
+              $sum: ["$sponsorship_wise.total_to_pay"],
+            },
+            current_to_pay: {
+              $sum: ["$sponsorship_wise.current_to_pay"],
+            },
+            previous_to_pay: {
+              $sum: ["$sponsorship_wise.previous_to_pay"],
+            },
+          },
+        },
+        {
+          $project: {
+            _id: 0,
+            sponsor_id: "$_id",
+            sponsorship_wise: 1,
+            total_to_pay: 1,
+            current_to_pay: 1,
+            previous_to_pay: 1,
+          },
+        },
+      ])
+      .toArray();
   },
 };

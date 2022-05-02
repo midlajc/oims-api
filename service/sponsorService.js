@@ -72,4 +72,17 @@ module.exports = {
         });
     });
   },
+  calculateDue: (sponsorships) => {
+    return new Promise((resolve, reject) => {
+      Promise.all(
+        sponsorships.map((sponsorship, index) => {
+          return sponsorModel.fetchDues(sponsorship._id);
+        })
+      ).then((dues) => {
+        resolve(dues);
+      }).catch(err=>{
+        reject(err)
+      });
+    });
+  },
 };

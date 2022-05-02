@@ -50,4 +50,7 @@ router
     }
   );
 
+//must require minimum 1 month or year difference 
+router.route("/update-sponsorship-amount");
+
 module.exports = router;

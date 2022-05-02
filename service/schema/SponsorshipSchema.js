@@ -5,6 +5,7 @@ module.exports = {
     this.sponsorship_no = parseInt(data.sponsorshipNo);
     this.student_id = ObjectId(data.studentId);
     this.sponsor_id = ObjectId(data.sponsorId);
+    //for one month
     this.sponsorship_amount = parseInt(data.amount);
     this.payment_interval = data.paymentInterval;
     this.created_at = new Date();

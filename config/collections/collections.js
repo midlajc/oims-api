@@ -29,4 +29,7 @@ module.exports = {
 
   //sponsorship collections
   SPONSORSHIP_COLLECTION: "sponsorships",
+
+  //payments collections to store payment details
+  PAYMENT_COLLECTION:'payments'
 };

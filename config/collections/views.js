@@ -5,4 +5,5 @@ module.exports = {
   SPONSOR_VIEW: "sponsor_view",
   STUDENT_VIEW: "student_view",
   SPONSORSHIP_VIEW: "sponsorship_view",
+  DUE_VIEW: "due_view",
 };

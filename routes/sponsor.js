@@ -59,7 +59,6 @@ router.route("/profile").get(verifyRoles(roles_list.Sponsor), (req, res) => {
     });
 });
 
-
 //to fetch sponsorships of individual sponsor
 router
   .route("/sponsorships")
@@ -73,5 +72,23 @@ router
         res.status(500).json(err);
       });
   });
+
+router.route("/fetch-dues").get(verifyRoles(roles_list.Sponsor), (req, res) => {
+  sponsorshipsService
+    .sponsorshipListBySponsorId(req.user.sponsorId)
+    .then((sponsorships) => {
+      sponsorService
+        .calculateDue(sponsorships)
+        .then((response) => {
+          res.status(200).json(response);
+        })
+        .catch((err) => {
+          res.status(500).json(err);
+        });
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
+});
 
 module.exports = router;

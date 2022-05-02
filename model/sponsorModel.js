@@ -79,4 +79,15 @@ module.exports = {
       })
       .toArray();
   },
+  fetchDues: (sponsorship_id) => {
+    return db
+      .get()
+      .collection(views.DUE_VIEW)
+      .findOne(
+        { _id: ObjectId(sponsorship_id) },
+        {
+          $projection: {},
+        }
+      );
+  },
 };

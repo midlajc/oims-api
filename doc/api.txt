@@ -73,6 +73,9 @@ api for sponsor management
 /sponsor/sponsorships
 (get) fetch sponsorships of individual sponsor
 
+/sponsor/fetch-dues
+(get) to fetch dues of sponsor
+
 
 /students
 api for student management
@@ -92,3 +95,5 @@ api for sponsorship management
 
 /sponsorships/sponsorships-by-sponsor-id/:sponsor_id
 (get) fetch sponsorships of individual sponsor
+
+/sponsorships/update-sponsorship-amount *****

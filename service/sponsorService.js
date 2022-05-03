@@ -1,6 +1,7 @@
 const sponsorModel = require("../model/sponsorModel");
 const { hashPassword } = require("./authService");
-const { SponsorLogin, Sponsor } = require("./schema/SponsorSchema");
+const { SponsorLogin, Sponsor, PaymentLog } = require("./schema/SponsorSchema");
+const Razorpay = require("razorpay");
 
 module.exports = {
   sponsorApplications: () => {
@@ -77,18 +78,40 @@ module.exports = {
       sponsorModel
         .fetchDues(sponsor_id)
         .then((dues) => {
-          // let total = {
-          //   total_to_pay: 0,
-          //   current_to_pay: 0,
-          //   previous_to_pay: 0,
-          // };
-          // await dues.map((value, index) => {
-          //   total.total_to_pay += parseInt(dues.total_to_pay);
-          //   total.current_to_pay += parseInt(dues.current_to_pay);
-          //   total.previous_to_pay += parseInt(dues.previous_to_pay);
-          // });
-          // total.sponsorship_wise = dues;
           resolve(dues);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
+  createRazorpayInstance: (data) => {
+    return new Promise((resolve, reject) => {
+      sponsorModel
+        .generatePaymentLog(new PaymentLog(data))
+        .then(async (response) => {
+          try {
+            const instance = new Razorpay({
+              key_id: process.env.RAZORPAY_KEY_ID,
+              key_secret: process.env.RAZORPAY_SECRET,
+            });
+
+            const options = {
+              amount: parseInt(data.amount) * 100, // amount in smallest currency unit
+              currency: "INR",
+              receipt: "" + response.insertedId,
+            };
+
+            const payment = await instance.orders.create(options);
+
+            if (!payment) {
+              reject("Some error occurred");
+            } else {
+              resolve(payment);
+            }
+          } catch (err) {
+            reject(err);
+          }
         })
         .catch((err) => {
           reject(err);

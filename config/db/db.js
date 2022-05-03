@@ -5,8 +5,8 @@ const state = {
 }
 
 module.exports.connect = (done) => {
-    const url = process.env.dbLink
-    const dbName = process.env.dbName
+    const url = process.env.DB_LINK
+    const dbName = process.env.DB_NAME
 
     mongoClient.connect(url, { useUnifiedTopology: true }, (err, data) => {
         if (err) return done(err)

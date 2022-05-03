@@ -31,5 +31,6 @@ module.exports = {
   SPONSORSHIP_COLLECTION: "sponsorships",
 
   //payments collections to store payment details
-  PAYMENT_COLLECTION:'payments'
+  PAYMENT_COLLECTION: "payments",
+  PAYMENT_LOG: "payment_log",
 };

@@ -20,4 +20,9 @@ module.exports = {
     this.communication_address = data.permanent_address;
     this.created_at = new Date();
   },
+  PaymentLog: function (data) {
+    this.amount = parseInt(data.amount);
+    this.sponsor_id = ObjectId(data.sponsor_id);
+    this.payment_status = false;
+  },
 };

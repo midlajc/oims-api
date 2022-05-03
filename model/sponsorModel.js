@@ -131,4 +131,7 @@ module.exports = {
       ])
       .toArray();
   },
+  generatePaymentLog: (data) => {
+    return db.get().collection(collections.PAYMENT_LOG).insertOne(data);
+  },
 };

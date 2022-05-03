@@ -87,7 +87,7 @@ router.route("/fetch-dues").get(verifyRoles(roles_list.Sponsor), (req, res) => {
 router.route("/payment").get(verifyRoles(roles_list.Sponsor), (req, res) => {
   sponsorService
     .createRazorpayInstance({
-      amount: req.body.amount,
+      amount: req.query.amount,
       sponsorId: req.user.sponsorId,
     })
     .then((response) => {

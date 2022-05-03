@@ -174,13 +174,11 @@ module.exports = {
             let payments = [];
 
             for (x of sponsorships) {
-              // payments.push
-              if (amount === 0) return;
+              if (amount === 0) break;
               let pay = amount;
               if (amount > parseInt(x.total_to_pay))
                 pay = parseInt(x.total_to_pay);
               amount -= pay;
-              console.log(amount);
               payments.push(
                 new Payment({
                   receiptId,

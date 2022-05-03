@@ -6,4 +6,5 @@ module.exports = {
   STUDENT_VIEW: "student_view",
   SPONSORSHIP_VIEW: "sponsorship_view",
   DUE_VIEW: "due_view",
+  PAYMENT_VIEW: "payment_view",
 };

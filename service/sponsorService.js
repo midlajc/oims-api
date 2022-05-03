@@ -1,7 +1,15 @@
 const sponsorModel = require("../model/sponsorModel");
 const { hashPassword } = require("./authService");
-const { SponsorLogin, Sponsor, PaymentLog } = require("./schema/SponsorSchema");
+const {
+  SponsorLogin,
+  Sponsor,
+  PaymentLog,
+  Payment,
+} = require("./schema/SponsorSchema");
 const Razorpay = require("razorpay");
+const sponsorshipsService = require("./sponsorshipsService");
+const crypto = require("crypto");
+const { ObjectId } = require("mongodb");
 
 module.exports = {
   sponsorApplications: () => {
@@ -116,6 +124,84 @@ module.exports = {
         .catch((err) => {
           reject(err);
         });
+    });
+  },
+  verifyPayment: (data) => {
+    return new Promise(async (resolve, reject) => {
+      const {
+        receiptId,
+        orderCreationId,
+        razorpayPaymentId,
+        razorpayOrderId,
+        razorpaySignature,
+        sponsorId,
+      } = data;
+
+      // Creating our own digest
+      // The format should be like this:
+      // digest = hmac_sha256(orderCreationId + "|" + razorpayPaymentId, secret);
+      const shasum = crypto.createHmac("sha256", process.env.RAZORPAY_SECRET);
+
+      shasum.update(`${orderCreationId}|${razorpayPaymentId}`);
+
+      const digest = shasum.digest("hex");
+
+      // comparing our digest with the actual signature
+      if (digest !== razorpaySignature) {
+        reject("Transaction not legit!");
+      } else {
+        const props = {
+          find: {
+            _id: receiptId,
+          },
+          update: {
+            $set: {
+              razorpay_payment_id: razorpayPaymentId,
+              razorpay_order_id: razorpayOrderId,
+              razorpay_signature: razorpaySignature,
+              payment_status: true,
+            },
+          },
+        };
+        sponsorModel
+          .updatePaymentLog(props)
+          .then(async (response) => {
+            let sponsorships = await sponsorModel.fetchSponsorshipsDues(
+              sponsorId
+            );
+            let amount = parseInt(response.value.amount);
+
+            let payments = [];
+
+            for (x of sponsorships) {
+              // payments.push
+              if (amount === 0) return;
+              let pay = amount;
+              if (amount > parseInt(x.total_to_pay))
+                pay = parseInt(x.total_to_pay);
+              amount -= pay;
+              console.log(amount);
+              payments.push(
+                new Payment({
+                  receiptId,
+                  sponsorshipId: x.sponsorship_id,
+                  amount: pay,
+                })
+              );
+            }
+            sponsorModel
+              .createNewPayment(payments)
+              .then((response) => {
+                resolve(response);
+              })
+              .catch((err) => {
+                reject(err);
+              });
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      }
     });
   },
 };

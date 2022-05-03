@@ -24,5 +24,15 @@ module.exports = {
     this.amount = parseInt(data.amount);
     this.sponsor_id = ObjectId(data.sponsor_id);
     this.payment_status = false;
+    this.razorpay_payment_id = "";
+    this.razorpay_order_id = "";
+    this.razorpay_signature = "";
+    this.created_at = new Date();
+  },
+  Payment: function (data) {
+    this.amount = parseFloat(data.amount);
+    this.receipt_id = ObjectId(data.receiptId);
+    this.sponsorship_id = ObjectId(data.sponsorshipId);
+    this.created_at = new Date();
   },
 };

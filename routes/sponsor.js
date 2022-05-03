@@ -84,18 +84,30 @@ router.route("/fetch-dues").get(verifyRoles(roles_list.Sponsor), (req, res) => {
     });
 });
 
-router.route("/payment").get(verifyRoles(roles_list.Sponsor), (req, res) => {
-  sponsorService
-    .createRazorpayInstance({
-      amount: req.query.amount,
-      sponsorId: req.user.sponsorId,
-    })
-    .then((response) => {
-      res.status(200).json(response);
-    })
-    .catch((err) => {
-      res.status(500).json(err);
-    });
-});
+router
+  .route("/payment")
+  .get(verifyRoles(roles_list.Sponsor), (req, res) => {
+    sponsorService
+      .createRazorpayInstance({
+        amount: req.query.amount,
+        sponsorId: req.user.sponsorId,
+      })
+      .then((response) => {
+        res.status(200).json(response);
+      })
+      .catch((err) => {
+        res.status(500).json(err);
+      });
+  })
+  .post(verifyRoles(roles_list.Sponsor), (req, res) => {
+    sponsorService
+      .verifyPayment({ ...req.body, sponsorId: req.user.sponsorId })
+      .then((response) => {
+        res.status(200).json(response);
+      })
+      .catch((err) => {
+        res.status(500).json(err);
+      });
+  });
 
 module.exports = router;

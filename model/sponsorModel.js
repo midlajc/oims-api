@@ -134,4 +134,38 @@ module.exports = {
   generatePaymentLog: (data) => {
     return db.get().collection(collections.PAYMENT_LOG).insertOne(data);
   },
+  updatePaymentLog: (props) => {
+    return db
+      .get()
+      .collection(collections.PAYMENT_LOG)
+      .findOneAndUpdate(
+        {
+          _id: ObjectId(props.find._id),
+        },
+        props.update
+      );
+  },
+  createNewPayment: (data) => {
+    return db.get().collection(collections.PAYMENT_COLLECTION).insertMany(data);
+  },
+  fetchSponsorshipsDues: (sponsorId) => {
+    return db
+      .get()
+      .collection(views.DUE_VIEW)
+      .find({
+        sponsor_id: ObjectId(sponsorId),
+      })
+      .sort({
+        total_to_pay: -1,
+      })
+      .project({
+        _id: 0,
+        sponsorship_id: "$_id",
+        sponsor_id: 1,
+        total_to_pay: 1,
+        current_to_pay: 1,
+        previous_to_pay: 1,
+      })
+      .toArray();
+  },
 };

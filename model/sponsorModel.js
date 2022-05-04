@@ -178,6 +178,8 @@ module.exports = {
         created_at: 1,
         amount: 1,
         receipt_id: 1,
+      }).sort({
+        created_at:-1
       })
       .toArray();
   },

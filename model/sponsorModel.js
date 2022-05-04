@@ -168,4 +168,17 @@ module.exports = {
       })
       .toArray();
   },
+  getTransactions: (sponsorId) => {
+    return db
+      .get()
+      .collection(views.PAYMENT_VIEW)
+      .find({ "sponsor._id": ObjectId(sponsorId) })
+      .project({
+        student_name: "$student.name",
+        created_at: 1,
+        amount: 1,
+        receipt_id: 1,
+      })
+      .toArray();
+  },
 };

@@ -202,4 +202,16 @@ module.exports = {
       }
     });
   },
+  transactions: (sponsorId) => {
+    return new Promise((resolve, reject) => {
+      sponsorModel
+        .getTransactions(sponsorId)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
 };

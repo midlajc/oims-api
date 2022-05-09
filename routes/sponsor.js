@@ -121,6 +121,18 @@ router
       .catch((err) => {
         res.status(500).json(err);
       });
-  });
+  })
 
+router
+  .route("/total-paid")
+  .get(verifyRoles(roles_list.Sponsor), (req, res) => {
+    sponsorService
+      .getTotalPaid(req.user.sponsorId)
+      .then((response) => {
+        res.status(200).json(response);
+      })
+      .catch((err) => {
+        res.status(500).json(err);
+      });
+  });
 module.exports = router;

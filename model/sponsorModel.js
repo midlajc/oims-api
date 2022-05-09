@@ -178,9 +178,38 @@ module.exports = {
         created_at: 1,
         amount: 1,
         receipt_id: 1,
-      }).sort({
-        created_at:-1
       })
+      .sort({
+        created_at: -1,
+      })
+      .toArray();
+  },
+  getTotalPaid: (sponsorId) => {
+    return db
+      .get()
+      .collection(views.PAYMENT_VIEW)
+      .aggregate([
+        {
+          $match: {
+            "sponsor._id": ObjectId(sponsorId),
+          },
+        },
+        {
+          $group: {
+            _id: null,
+            amount: {
+              $sum: "$amount",
+            },
+          },
+        },
+        {
+          $project: {
+            amount: {
+              $sum: "$amount",
+            },
+          },
+        },
+      ])
       .toArray();
   },
 };

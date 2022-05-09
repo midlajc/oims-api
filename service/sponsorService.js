@@ -214,4 +214,16 @@ module.exports = {
         });
     });
   },
+  getTotalPaid: (sponsorId) => {
+    return new Promise((resolve, reject) => {
+      sponsorModel
+        .getTotalPaid(sponsorId)
+        .then((response) => {
+          resolve(response[0]);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
 };
